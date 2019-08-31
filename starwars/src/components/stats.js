@@ -9,10 +9,10 @@ const Paragraph = styled.p`
 function Stats(props){
 	return (
 		<div>
-			<Paragraph> {props.gender} </Paragraph>
-			<Paragraph> {props.height} </Paragraph>
-			<Paragraph> {props.mass} </Paragraph>
-			<Paragraph> {props.hair_color} </Paragraph>
+			<Paragraph> Gender: {props.gender} </Paragraph>
+			<Paragraph> Height: {props.height} </Paragraph>
+			<Paragraph> Mass: {props.mass} </Paragraph>
+			<Paragraph> Hair Color: {props.hair_color} </Paragraph>
 		</div>
 		)
 }

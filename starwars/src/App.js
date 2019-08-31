@@ -7,27 +7,14 @@ import Stats from './components/stats';
 
 
 const App = () => {
-  const [characterName , setCharacterName] = useState();
-  const [characterGender , setCharacterGender] = useState();
-  const [characterHairColor, setCharacterHairColor] = useState();
-  const [characterMass , setCharacterMass] = useState();
-  const [characterHeight , setCharacterHeight] = useState();
+  const [chars , setChar] = useState([]);
+
 
   useEffect(() => {
     axios
       .get('https://swapi.co/api/people/')
       .then((resp) => {
-        const chars =resp.data.results;
-        console.log(chars);
-        chars.map((char) => {
-          setCharacterName(char.name);
-          setCharacterGender(char.gender);
-          setCharacterHeight(char.height);
-          setCharacterMass(char.mass);
-          setCharacterHairColor(char.hair_color);
-
-        });
-        
+        setChar(resp.data.results);   
     })
       .catch((err) => console.log(err))
   }, []);
@@ -37,16 +24,24 @@ const App = () => {
   // Fetch characters from the star wars api in an effect hook. Remember, anytime you have a 
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
+console.log(chars)
 
   return (
+
     <div className="App">
-
       <h1 className="Header">React Wars</h1>
-      <Header name={characterName} />
-      <Stats gender={characterGender} height={characterHeight} mass={characterMass} hair_color={characterHairColor}/>
-
-
+      <div className="person">
+        {chars.map((person, index) => {
+          return (
+              <div className="character" key={index}>
+                <Header key={index} name={person.name} />
+                <Stats key={index+100} gender={person.gender} height={person.height} mass={person.mass} hair_color={person.hair_color} />
+              </div>
+            )
+        })}
+      </div>
     </div>
+
   );
 }
 
