@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 const Paragraph = styled.p`
 	color:yellow;
+	width: 100%;
+	text-align: right;
 `;
 
 
